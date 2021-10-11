@@ -28,7 +28,7 @@ class MongooseController extends DBController {
    */
   saveMany(collection,data,next){
     next = next?next:null;
-    collection.insertMany(data, next);
+    collection.insertMany(data, { ordered: false }, next);
   }
 
   /**
