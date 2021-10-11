@@ -7,6 +7,6 @@
 4.  Start server.js (npm start)
 5.  Start any number of scraper.js nodes (node scraper.js)
 6.  Open <a href="http://localhost:3000/">http://localhost:3000/</a>
-7.  Enter Wikipedia link (i.e https://en.bitcoin.it/wiki/Bitcoin)
+7.  Enter Wikipedia link (i.e https://en.wikipedia.org/wiki/Bitcoin)
 8.  Enter crawl depth
 9.  Go
