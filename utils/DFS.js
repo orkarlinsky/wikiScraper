@@ -1,34 +1,36 @@
 // doDFS([{ link: "/wiki/Peak_oil", depthLeft: 1, alg: "DFS" }]);
-/*function doDFS(data) {
+function doDFS(data) {
   data = data[0];
   const link = data.link;
   var depthLeft = data.depthLeft;
   var orderID = 0;
   var items = [];
-  function done(){
-	  
-  }
-  async function recurse(links) {
-    async function read(link, i) {
-      const { wikiItem, internalLinks } = await WikiItemReader.read(
-        link.link,
-        orderID,
-        depthLeft
-      );
-      orderID++;
-      //console.log(internalLinks);
-      if (depthLeft == 0) {
-        return wikiItem;
-      } else {
-        depthLeft--;
-        return recurse(internalLinks);
+
+  function recurse(link, depth){
+    depth = depth?depth:0;
+    var url = link.url;
+    if(depth < depthLeft){
+      try{
+        const { wikiItem, internalLinks } = await WikiItemReader.read(
+          url,
+          orderID,
+          depth
+        );
+        depth
+        internalLinks.forEach(function(link,i){
+          if(items.indexOf(link.url)<0){
+            items.push(link.url);
+            recurse(link.url,depth+1);
+          }
+        });
+
+        return items;
+      }catch(err){
+
       }
-      console.log(depthLeft);
     }
-    links.forEach(function (link, i) {
-      items.push(read(link, i));
-    });
   }
-  recurse([{ link: link }]);
-  console.log(items);
-}*/
+        
+  items = recurse(link);
+  //console.log(items);
+}
