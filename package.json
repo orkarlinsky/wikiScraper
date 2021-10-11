@@ -1,0 +1,20 @@
+{
+  "name": "WikiScraper",
+  "version": "1.0.0",
+  "description": "Simple Wikipedia Scraper",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Or Karlinsky",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.10",
+    "socket.io": "^4.2.0",
+    "socket.io-client": "^4.2.0"
+  }
+}

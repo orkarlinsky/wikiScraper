@@ -1,0 +1,19 @@
+
+class Queue extends Array {
+    add(val) {
+        this.push(val);
+    }
+
+    consume() {
+        return this.shift();
+    }
+
+    peek() {
+        return this[0];
+    }
+
+    isEmpty() {
+        return this.length === 0;
+    }
+}
+module.exports = Queue;

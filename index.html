@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WikiScraper</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+
+  <body>
+    <form id="entryForm" action="">
+      <label for="link">Link:</label>
+      <input type="text" id="link" /><br/><br/>
+      <label for="dephLeft">Depth:</label>
+      <input type="number" min="0" id="dephLeft" value="0" /><br/><br/>
+      Algorithm:<br/>
+      <label for="bfs">BFS:</label>
+      <input type="radio" name="alg" id="bfs" value="BFS" checked/>
+      <label for="dfs">DFS:</label>
+      <input type="radio" name="alg" id="dfs" value="DFS"/>
+      <button>Go</button>
+    </form>
+
+    <script>
+      (function () {
+        const socket = io('http://localhost:3000');
+
+        const entryForm = document.getElementById("entryForm");
+        const link = document.getElementById("link");
+        const depthLeft = document.getElementById("dephLeft");
+
+        entryForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const linkVal = link.value;
+          const depthLeftVal = depthLeft.value || 0;
+          const alg = document.querySelector('input[name="alg"]:checked').value;
+          if (linkVal) {
+            socket.emit("entry", [{ 
+                url: linkVal, 
+                depthLeft: depthLeftVal,
+                alg:alg
+            }]);
+            link.value = "";
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
