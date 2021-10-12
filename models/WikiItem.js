@@ -23,7 +23,7 @@ const wikiItemSchema = new Schema(
     },
     internal_links: [
       {
-        link: String,
+        url: String,
         depthLeft: Number,
       },
     ],
